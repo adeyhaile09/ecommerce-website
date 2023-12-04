@@ -1,6 +1,6 @@
 import useSwr from 'swr';
-import ProductItem from '../../product-item';
-import ProductsLoading from './loading';
+import ProductItem from '../../product-item/loading/loading';
+import ProductsLoading from './list';
 import { ProductTypeList } from 'types';
 
 const ProductsContent = () => {
@@ -10,27 +10,25 @@ const ProductsContent = () => {
   if (error) return <div>Failed to load users</div>;
   return (
     <>
-      {!data && 
-        <ProductsLoading />
-      }
+      {!data && <ProductsLoading />}
 
-      {data &&
+      {data && (
         <section className="products-list">
-          {data.map((item: ProductTypeList)  => (
-            <ProductItem 
-              id={item.id} 
+          {data.map((item: ProductTypeList) => (
+            <ProductItem
+              id={item.id}
               name={item.name}
               price={item.price}
               color={item.color}
               currentPrice={item.currentPrice}
               key={item.id}
-              images={item.images} 
+              images={item.images}
             />
           ))}
         </section>
-      }
+      )}
     </>
   );
 };
-  
-export default ProductsContent
+
+export default ProductsContent;

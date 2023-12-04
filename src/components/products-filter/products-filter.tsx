@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import Checkbox from './form-builder/checkbox';
-import CheckboxColor from './form-builder/checkbox-color';
+import Checkbox from './form-builder/checkbox/checkbox';
+import CheckboxColor from './form-builder/checkbox-color/checkbox-color';
 import Slider from 'rc-slider';
 
 // data
-import productsTypes from './../../../utils/data/products-types';
-import productsColors from './../../../utils/data/products-colors';
-import productsSizes from './../../../utils/data/products-sizes';
+import productsTypes from '../../../utils/data/products-types';
+import productsColors from '../../../utils/data/products-colors';
+import productsSizes from '../../../utils/data/products-sizes';
 
 // const { createSliderWithTooltip } = Slider;
 // const Range = createSliderWithTooltip(Slider.Range);

@@ -1,10 +1,8 @@
-import Footer from '@/components/footer';
-import { Provider } from 'react-redux';
-import { store } from '../../store';
+import Footer from '@/components/footer/footer';
 import Layout from '../../layouts/Main';
-import PageIntro from '@/components/page-intro';
-import ProductsFeatured from '@/components/products-featured';
-import Subscribe from '@/components/subscribe';
+import PageIntro from '@/components/page-intro/page-intro';
+import ProductsFeatured from '@/components/products-featured/products-featured';
+import Subscribe from '@/components/subscribe/subscribe';
 
 export default function Home() {
   return (

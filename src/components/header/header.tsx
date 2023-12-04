@@ -5,13 +5,6 @@ import Logo from '../../../assets/icons/logo';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { RootState } from '../../../store/index';
-import { Button, Text } from '@mantine/core';
-import {
-  IconMenu2,
-  IconSearch,
-  IconShoppingCart,
-  IconUser,
-} from '@tabler/icons-react';
 
 type HeaderType = {
   isErrorPage?: Boolean;
@@ -31,7 +24,6 @@ const Header = ({ isErrorPage }: HeaderType) => {
   const searchRef = useRef(null);
 
   const headerClass = () => {
-    console.log('Console');
     if (window.pageYOffset === 0) {
       setOnTop(true);
     } else {
@@ -39,17 +31,15 @@ const Header = ({ isErrorPage }: HeaderType) => {
     }
   };
 
-  console.log(onTop);
-
   useEffect(() => {
     if (!arrayPaths.includes(router.pathname) || isErrorPage) {
       return;
     }
 
     headerClass();
-    window.addEventListener('scroll', headerClass);
-
-    return window.removeEventListener('scroll', headerClass);
+    window.onscroll = function () {
+      headerClass();
+    };
   }, [arrayPaths, isErrorPage, router.pathname]);
 
   const closeMenu = () => {
@@ -70,25 +60,16 @@ const Header = ({ isErrorPage }: HeaderType) => {
         <Link href="/">
           <h1 className="site-logo">
             <Logo />
-            <Text className="text-black" style={{ color: 'black' }}>
-              E-Shop
-            </Text>
+            E-Shop
           </h1>
         </Link>
         <nav
           ref={navRef}
           className={`site-nav ${menuOpen ? 'site-nav--open' : ''}`}
-          style={{ color: 'black' }}
         >
-          <Link href="/products" style={{ color: 'black' }}>
-            Products
-          </Link>
-          <a href="#" style={{ color: 'black' }}>
-            Inspiration
-          </a>
-          <a href="#" style={{ color: 'black' }}>
-            Rooms
-          </a>
+          <Link href="/products">Products</Link>
+          <a href="#">Inspiration</a>
+          <a href="#">Rooms</a>
           <button className="site-nav__btn">
             <p>Account</p>
           </button>
@@ -112,26 +93,31 @@ const Header = ({ isErrorPage }: HeaderType) => {
                 placeholder="Enter the product you are looking for"
               />
             </form>
-            <IconSearch />
+            <i
+              onClick={() => setSearchOpen(!searchOpen)}
+              className="icon-search"
+            ></i>
           </button>
           <Link href="/cart">
-            <Button className="btn-cart">
-              <IconShoppingCart />
+            <button className="btn-cart">
+              <i className="icon-cart"></i>
               {cartItems.length > 0 && (
                 <span className="btn-cart__count">{cartItems.length}</span>
               )}
-            </Button>
+            </button>
           </Link>
           <Link href="/login">
             <button className="site-header__btn-avatar">
-              <IconUser />
+              <i className="icon-avatar"></i>
             </button>
           </Link>
           <button
             onClick={() => setMenuOpen(true)}
             className="site-header__btn-menu"
           >
-            <IconMenu2 />
+            <i className="btn-hamburger">
+              <span></span>
+            </i>
           </button>
         </div>
       </div>

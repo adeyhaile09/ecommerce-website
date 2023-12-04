@@ -1,13 +1,11 @@
 import '@mantine/core/styles.css';
-import Header from '@/components/header';
+import Header from '@/components/header/header';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { Provider } from 'react-redux';
 import { store } from '../store';
-import { create } from 'domain';
-import Footer from '@/components/footer';
 
 type LayoutType = {
   title?: string;
